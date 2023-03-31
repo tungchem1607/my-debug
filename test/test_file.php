@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php'; // Current Package test, remove if init other package
-require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'functions.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/func.php';
 
 /**
  * Project vn-telco-detect.
@@ -13,10 +13,13 @@ require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'funct
 use nguyenanhung\MyDebug\Manager\File;
 
 $file = new File();
-$file->setExclude(['*.zip']);
-$file->setInclude(['*.log']);
-dump($file->getVersion());
+$file->setExclude(array('*.zip'));
+$file->setInclude(array('*.log'));
 
-$path = testLogPath();
+$path = __DIR__ . '/../tmp';
+$path = realpath($path);
 
-dump($file->scanAndZip($path, 3));
+d($file->directoryScanner($path));
+
+
+

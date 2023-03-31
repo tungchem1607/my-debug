@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php'; // Current Package test, remove if init other package
-require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'functions.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/func.php';
 
 /**
  * Project vn-telco-detect.
@@ -15,6 +15,6 @@ use nguyenanhung\MyDebug\Utils;
 $utils = new Utils();
 $str   = 'Nguyễn An Hưng';
 
-dump($utils->getVersion());
-dump($utils::slugify($str));
-dump($utils::convert_vi_to_en($str));
+__show__($utils->getVersion());
+__show__($utils::slugify($str));
+

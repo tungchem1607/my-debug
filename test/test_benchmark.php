@@ -1,6 +1,6 @@
 <?php
-require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php'; // Current Package test, remove if init other package
-require_once __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'functions.php';
+require_once __DIR__ . '/../vendor/autoload.php';
+require __DIR__ . '/func.php';
 
 /**
  * Project vn-telco-detect.
@@ -15,18 +15,17 @@ use nguyenanhung\MyDebug\Benchmark;
 $benchmark = new Benchmark();
 /***************************** SIMPLE BENCHMARKING BY CI *****************************/
 $benchmark->mark('code_start');
-$mathFunctions = ["abs", "acos", "asin", "atan", "bindec", "floor", "exp", "sin", "tan", "pi", "is_finite", "is_nan",
-                  "sqrt"];
-$count         = 9999;
+$mathFunctions = ["abs", "acos", "asin", "atan", "floor"];
+$count = 10;
 for ($i = 0; $i < $count; $i++) {
     foreach ($mathFunctions as $key => $function) {
-        call_user_func_array($function, [$i]);
+        $function($i);
         echo ($key + 1) . " -> " . $function . "\n";
     }
 }
 $benchmark->mark('code_end');
 
-dump($benchmark->getVersion());
-dump($benchmark->elapsed_time('code_start', 'code_end'));
-dump($benchmark->memory_usage());
+
+__show__($benchmark->elapsed_time('code_start', 'code_end'));
+__show__($benchmark->memory_usage());
 /***************************** SIMPLE BENCHMARKING BY CI *****************************/
